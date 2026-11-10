@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synth Arcade - Confess</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="confess-page">
+
+    <div class="header">
+        <div class="logo-area">
+            <img src="../icon.png" alt="Logo" class="logo-icon-img">
+            <span>Synth Arcade</span>
+        </div>
+        <div class="page-subtitle">confess</div>
+    </div>
+
+    <div class="embed-container">
+        <iframe src="https://forms.gle/Ai6NzbRfp67sAD7E9" title="Confession Form">Loading…</iframe>
+    </div>
+
+    <div class="footer-time" id="clock">10:01</div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('clock').textContent = hours + ':' + minutes;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+
+</body>
+</html>
