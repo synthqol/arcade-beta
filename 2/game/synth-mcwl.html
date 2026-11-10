@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Web Launcher - Synth Arcade</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="launcher-page">
+
+    <!-- Top Header -->
+    <div class="header">
+        <div class="logo-area">
+            <img src="/icon.png" alt="Logo" class="logo-icon-img">
+            <span>Synth MCWL</span>
+        </div>
+        <div class="time" id="clock">10:01</div>
+    </div>
+
+    <!-- Center Hero Title Section -->
+    <div class="launcher-hero">
+        <div class="hero-badges">
+            <span class="badge"><img src="/mcwl/eaglercraft.png" alt="Eaglercraft" class="badge-img"> Eaglercraft</span>
+            <span class="badge-cube"><img src="/mcwl/mcraft.png" alt="mcraft.fun" class="badge-img"></span>
+            <span class="badge">mcraft.fun</span>
+        </div>
+        <h1>Minecraft Web<br>Launcher <span class="hero-author">by Synth Arcade <img src="/icon.png" alt="Logo" class="logo-icon-img"></span></h1>
+    </div>
+
+    <!-- Bottom Horizontal Version Scroll / Grid -->
+    <div class="versions-scroll">
+        <div class="version-card more-card">
+            <div class="version-title">more</div>
+            <div class="version-desc">More versions coming soon. Click here to view more versions using another website</div>
+        </div>
+
+        <!-- Clickable 1.8.8 Card -->
+        <div class="version-card clickable-card" onclick="openModal('1.8.8')">
+            <div class="version-title">1.8.8</div>
+            <div class="version-desc">Eaglercraft WASM-GC, Touch Mode, etc.</div>
+        </div>
+
+        <div class="version-card">
+            <div class="version-title">1.12</div>
+            <div class="version-desc">Eaglercraft WASM-GC</div>
+        </div>
+
+        <div class="version-card">
+            <div class="version-title">1.21</div>
+            <div class="version-desc">mcraft.fun</div>
+        </div>
+
+        <div class="clients-label">Clients</div>
+    </div>
+
+    <!-- Modal Popup Overlay -->
+    <div id="versionModal" class="modal-overlay" onclick="closeModalOnOutside(event)">
+        <div class="modal-content">
+            <div class="modal-header-row">
+                <h2 id="modalTitle">Header</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-options" id="modalOptions">
+                <!-- Options injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('clock').textContent = hours + ':' + minutes;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        function openModal(version) {
+            const modal = document.getElementById('versionModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalOptions = document.getElementById('modalOptions');
+
+            if (version === '1.8.8') {
+                modalTitle.textContent = '1.8.8 Options';
+                modalOptions.innerHTML = `
+                    <a href="https://eaglercraft.ir/play/1.8.8wasm?touch=false&userscript=" target="_blank" class="modal-option-link">WASM-GC</a>
+                    <a href="https://eaglercraft.ir/play/1.8.8wasm?touch=true&userscript=flameddogo99-eaglermobile.js" target="_blank" class="modal-option-link">WASM-GC (with touch mode)</a>
+                    <a href="https://eaglercraft.ir/play/1.8.8?touch=false&userscript=" target="_blank" class="modal-option-link">1.8.8 Classic</a>
+                    <a href="https://eaglercraft.ir/play/1.8.8?touch=true&userscript=flameddogo99-eaglermobile.js" target="_blank" class="modal-option-link">1.8.8 Classic (with touch mode)</a>
+                `;
+            }
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('versionModal').style.display = 'none';
+        }
+
+        function closeModalOnOutside(event) {
+            const modal = document.getElementById('versionModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
